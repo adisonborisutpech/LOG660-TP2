@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="hibernate.connection.url">jdbc:oracle:thin:@log660ora12c.logti.etsmtl.ca:1521:LOG660</property>
+  <property name="hibernate.connection.username">equipe11</property>
+  <property name="hibernate.connection.password">HLxL95Md</property>
+  <mapping resource="Adresse.hbm.xml"/>
+  <mapping resource="Locationfilm.hbm.xml"/>
+  <mapping resource="Rolepersonne.hbm.xml"/>
+  <mapping resource="Cartecredit.hbm.xml"/>
+  <mapping resource="Film.hbm.xml"/>
+  <mapping resource="Personne.hbm.xml"/>
+  <mapping resource="Forfait.hbm.xml"/>
+  <mapping resource="Genre.hbm.xml"/>
+  <mapping resource="Personnel.hbm.xml"/>
+  <mapping resource="Utilisateur.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

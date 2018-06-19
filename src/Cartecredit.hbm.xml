@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="Cartecredit" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="CARTECREDIT">
+        <id name="guid" type="int">
+            <column name="GUID" precision="6" scale="0"/>
+            <generator class="increment"/>
+        </id>
+        <property generated="never" lazy="false" name="marque" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="MARQUE" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="nocarte" optimistic-lock="true" type="long" unique="false">
+            <column name="NOCARTE" not-null="true" precision="16" scale="0" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="dateexpiration" optimistic-lock="true" type="date" unique="false">
+            <column length="7" name="DATEEXPIRATION" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="cvv" optimistic-lock="true" type="java.lang.Short" unique="false">
+            <column name="CVV" precision="3" scale="0"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="utilisateurs" optimistic-lock="true" sort="unsorted" table="UTILISATEUR">
+            <key on-delete="noaction">
+                <column name="NOCARTECREDIT" not-null="true" precision="6" scale="0"/>
+            </key>
+            <one-to-many class="Utilisateur" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

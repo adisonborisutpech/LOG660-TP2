@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="Utilisateur" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="UTILISATEUR">
+        <id name="guid" type="int">
+            <column name="GUID" precision="9" scale="0"/>
+            <generator class="increment"/>
+        </id>
+        <many-to-one class="com.log660.beans.Adresse" embed-xml="true" fetch="select" insert="true" name="adresse" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="NOADRESSE" not-null="true" precision="6" scale="0"/>
+        </many-to-one>
+        <many-to-one class="com.log660.beans.Cartecredit" embed-xml="true" fetch="select" insert="true" name="cartecredit" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="NOCARTECREDIT" not-null="true" precision="6" scale="0"/>
+        </many-to-one>
+        <many-to-one class="com.log660.beans.Forfait" embed-xml="true" fetch="select" insert="true" name="forfait" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="NOFORFAIT" not-null="true" precision="6" scale="0"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="prenom" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="PRENOM" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="nom" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="NOM" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="courriel" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="COURRIEL" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="telephone" optimistic-lock="true" type="long" unique="false">
+            <column name="TELEPHONE" not-null="true" precision="10" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="datenaissance" optimistic-lock="true" type="date" unique="false">
+            <column length="7" name="DATENAISSANCE" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="motdepasse" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="MOTDEPASSE" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="matricule" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="MATRICULE" precision="6" scale="0"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="locationfilms" optimistic-lock="true" sort="unsorted" table="LOCATIONFILM">
+            <key on-delete="noaction">
+                <column name="NOUTILISATEUR" not-null="true" precision="6" scale="0"/>
+            </key>
+            <one-to-many class="Locationfilm" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

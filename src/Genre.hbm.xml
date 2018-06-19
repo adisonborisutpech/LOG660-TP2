@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 -->
+<hibernate-mapping>
+ <class name="Genre" table="GENRE">
+  <id name="guid" type="int">
+   <column name="GUID" precision="6" scale="0"/>
+   <generator class="increment"></generator>
+  </id>
+  <property generated="never" lazy="false" name="nom" type="string">
+   <column length="25" name="NOM"/>
+  </property>
+ </class>
+</hibernate-mapping>
