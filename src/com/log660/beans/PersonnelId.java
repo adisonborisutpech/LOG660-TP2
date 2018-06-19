@@ -13,6 +13,7 @@ public class PersonnelId implements java.io.Serializable {
 	private int nofilm;
 	private int nopersonne;
 	private int norole;
+	private int id;
 
 	public PersonnelId() {
 	}
@@ -67,6 +68,15 @@ public class PersonnelId implements java.io.Serializable {
 		result = 37 * result + this.getNopersonne();
 		result = 37 * result + this.getNorole();
 		return result;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	@SuppressWarnings("unused")
+	private void setId(int id) {
+		this.id = id;
 	}
 
 }

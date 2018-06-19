@@ -50,7 +50,8 @@ public class Utilisateur implements java.io.Serializable {
 		return this.guid;
 	}
 	
-	public void setGuid(int guid) {
+	@SuppressWarnings("unused")
+	private void setGuid(int guid) {
 		this.guid = guid;
 	}
 

@@ -22,7 +22,8 @@ public class Rolepersonne implements java.io.Serializable {
 		this.nom = nom;
 	}
 
-	public int getGuid() {
+	@SuppressWarnings("unused")
+	private int getGuid() {
 		return this.guid;
 	}
 	

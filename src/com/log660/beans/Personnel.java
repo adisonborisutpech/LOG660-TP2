@@ -27,7 +27,8 @@ public class Personnel implements java.io.Serializable {
 		return this.id;
 	}
 	
-	public void setId(PersonnelId id) {
+	@SuppressWarnings("unused")
+	private void setId(PersonnelId id) {
 		this.id = id;
 	}
 
