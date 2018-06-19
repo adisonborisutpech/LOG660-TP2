@@ -1,5 +1,47 @@
 package com.log660.services;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import com.log660.beans.Utilisateur;
+import com.log660.utils.HibernateUtil;
+
 public class UtilisateurDAO {
+	
+	public static Utilisateur getUtilisateurByEmail(String email) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		/*CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Utilisateur> criteria = builder.createQuery(Utilisateur.class);
+        Root<Utilisateur> utilsateurRoot = criteria.from(Utilisateur.class);
+        criteria.select(utilsateurRoot); 
+        criteria.where(builder.equal(utilsateurRoot.get("courriel"), email));*/
+		
+		Transaction trans = null;
+		Utilisateur utilisateur = null;
+		try {
+			
+			trans = session.beginTransaction();
+			
+			utilisateur = (Utilisateur)session.createCriteria(Utilisateur.class).add(Restrictions.eq("courriel", email)).uniqueResult();
+			System.out.println(utilisateur.getNom());
+			
+			trans.commit();
+			
+		} catch (HibernateException e) {
+			trans.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}	
+		
+		return null;
+	}
 
 }
