@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
-    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="Utilisateur" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="UTILISATEUR">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.log660.beans.Utilisateur" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="UTILISATEUR">
         <id name="guid" type="int">
             <column name="GUID" precision="9" scale="0"/>
             <generator class="increment"/>
@@ -40,7 +40,7 @@
             <key on-delete="noaction">
                 <column name="NOUTILISATEUR" not-null="true" precision="6" scale="0"/>
             </key>
-            <one-to-many class="Locationfilm" embed-xml="true" not-found="exception"/>
+            <one-to-many class="com.log660.beans.Locationfilm" embed-xml="true" not-found="exception"/>
         </set>
     </class>
 </hibernate-mapping>

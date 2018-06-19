@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
-    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="Personnel" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="PERSONNEL">
-        <composite-id class="PersonnelId" mapped="false" name="id" unsaved-value="undefined">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.log660.beans.Personnel" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="PERSONNEL">
+        <composite-id class="com.log660.beans.PersonnelId" mapped="false" name="id" unsaved-value="undefined">
             <key-property name="nofilm" type="int">
                 <column name="NOFILM" precision="9" scale="0"/>
             </key-property>
@@ -13,13 +13,13 @@
                 <column name="NOROLE" precision="9" scale="0"/>
             </key-property>
         </composite-id>
-        <many-to-one class="Personne" embed-xml="true" fetch="select" insert="false" name="personne" not-found="exception" optimistic-lock="true" unique="false" update="false">
+        <many-to-one class="com.log660.beans.Personne" embed-xml="true" fetch="select" insert="false" name="personne" not-found="exception" optimistic-lock="true" unique="false" update="false">
             <column name="NOPERSONNE" not-null="true" precision="9" scale="0"/>
         </many-to-one>
-        <many-to-one class="Rolepersonne" embed-xml="true" fetch="select" insert="false" name="rolepersonne" not-found="exception" optimistic-lock="true" unique="false" update="false">
+        <many-to-one class="com.log660.beans.Rolepersonne" embed-xml="true" fetch="select" insert="false" name="rolepersonne" not-found="exception" optimistic-lock="true" unique="false" update="false">
             <column name="NOROLE" not-null="true" precision="9" scale="0"/>
         </many-to-one>
-        <many-to-one class="Film" embed-xml="true" fetch="select" insert="false" name="film" not-found="exception" optimistic-lock="true" unique="false" update="false">
+        <many-to-one class="com.log660.beans.Film" embed-xml="true" fetch="select" insert="false" name="film" not-found="exception" optimistic-lock="true" unique="false" update="false">
             <column name="NOFILM" not-null="true" precision="9" scale="0"/>
         </many-to-one>
     </class>

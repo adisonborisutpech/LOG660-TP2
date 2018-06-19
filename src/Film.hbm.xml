@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
-    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="Film" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="FILM">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.log660.beans.Film" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="FILM">
         <id name="guid" type="int">
             <column name="GUID" precision="9" scale="0"/>
             <generator class="increment"/>
@@ -31,7 +31,7 @@
             <key on-delete="noaction">
                 <column name="NOFILM" not-null="true" precision="9" scale="0"/>
             </key>
-            <many-to-many embed-xml="true" entity-name="Genre" not-found="exception" unique="false">
+            <many-to-many embed-xml="true" entity-name="com.log660.beans.Genre" not-found="exception" unique="false">
                 <column name="NOGENRE" not-null="true" precision="6" scale="0"/>
             </many-to-many>
         </set>
@@ -39,13 +39,13 @@
             <key on-delete="noaction">
                 <column name="NOFILM" not-null="true" precision="9" scale="0"/>
             </key>
-            <one-to-many class="Personnel" embed-xml="true" not-found="exception"/>
+            <one-to-many class="com.log660.beans.Personnel" embed-xml="true" not-found="exception"/>
         </set>
         <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="locationfilms" optimistic-lock="true" sort="unsorted" table="LOCATIONFILM">
             <key on-delete="noaction">
                 <column name="NOFILM" not-null="true" precision="6" scale="0"/>
             </key>
-            <one-to-many class="Locationfilm" embed-xml="true" not-found="exception"/>
+            <one-to-many class="com.log660.beans.Locationfilm" embed-xml="true" not-found="exception"/>
         </set>
     </class>
 </hibernate-mapping>

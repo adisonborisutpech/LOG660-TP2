@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7-Jun-2018 3:42:39 PM by Hibernate Tools 5.3.0.Beta2 -->
 <hibernate-mapping>
- <class name="Genre" table="GENRE">
+ <class name="com.log660.beans.Genre" table="GENRE">
   <id name="guid" type="int">
    <column name="GUID" precision="6" scale="0"/>
    <generator class="increment"></generator>

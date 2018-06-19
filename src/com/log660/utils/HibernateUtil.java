@@ -9,13 +9,7 @@ public class HibernateUtil {
 	static
 	{
 		try {
-			// Create the SessionFactory from hibernate.cfg.xml
-			Configuration configuration = new Configuration();
-			configuration.configure("hibernate.cfg.xml");
-			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-			        .applySettings(configuration.getProperties()).build();
-			sessionFactory = configuration
-			        .buildSessionFactory(serviceRegistry);
+			sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
 			throw new ExceptionInInitializerError(ex);
 		}
