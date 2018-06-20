@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
-	<classpathentry kind="lib" path="/Users/KIRO/Desktop/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="/Users/dennisorozco/Downloads/ojdbc7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
