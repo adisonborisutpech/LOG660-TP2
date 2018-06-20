@@ -1,4 +1,8 @@
+package com.log660.ui;
 import javax.swing.*;
+
+import com.log660.controllers.Controller;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +32,7 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean loginOk;
-                loginOk = Controller.attemptLogin(nameLogin.getText(),passwordLogin.getPassword().toString());
-
+                loginOk = Controller.attemptLogin(nameLogin.getText(),String.valueOf(passwordLogin.getPassword()));
                 if (loginOk) {Controller.getWindowInstance().switchToSearchPanel();}
 
                 }

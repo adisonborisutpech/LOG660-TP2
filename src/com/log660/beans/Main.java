@@ -1,6 +1,7 @@
 package com.log660.beans;
 
 import com.log660.services.FilmDAO;
+import com.log660.services.LocationDAO;
 import com.log660.services.PersonneDAO;
 import com.log660.services.UtilisateurDAO;
 
@@ -12,6 +13,7 @@ public class Main {
 		String[] test1 = {"Family"};
 		String[] test2 = {};
 		String[] test3 = {"Leslie Mann"};
-		FilmDAO.getFilmByCriteria("", 1997, 1997, test, "", test1, test2, test3);
+		//FilmDAO.getFilmByCriteria("", 1997, 1997, test, "", test1, test2, test3);
+		LocationDAO.getLocationByUtilisateurId(441887);
 	}
 }

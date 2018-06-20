@@ -9,7 +9,7 @@ import com.log660.utils.HibernateUtil;
 
 public class UtilisateurDAO {
 	
-	public static Utilisateur getUtilisateurByEmail(String email) {
+	public static Utilisateur getUtilisateurById(int utilisateurGUID) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		/*CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -17,6 +17,28 @@ public class UtilisateurDAO {
         Root<Utilisateur> utilsateurRoot = criteria.from(Utilisateur.class);
         criteria.select(utilsateurRoot); 
         criteria.where(builder.equal(utilsateurRoot.get("courriel"), email));*/
+		
+		Transaction trans = null;
+		Utilisateur utilisateur = null;
+		try {
+			
+			trans = session.beginTransaction();		
+			utilisateur = (Utilisateur)session.createCriteria(Utilisateur.class).add(Restrictions.eq("guid", utilisateurGUID)).uniqueResult();			
+			trans.commit();
+			
+		} catch (HibernateException e) {
+			trans.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}	
+		
+		return utilisateur;
+	}
+	
+	public static Utilisateur getUtilisateurByEmail(String email) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction trans = null;
 		Utilisateur utilisateur = null;

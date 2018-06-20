@@ -1,4 +1,8 @@
+package com.log660.ui;
 import javax.swing.*;
+
+import com.log660.controllers.Controller;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

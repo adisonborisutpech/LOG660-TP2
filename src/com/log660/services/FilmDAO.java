@@ -84,7 +84,7 @@ public class FilmDAO {
 			}
 			
 			if (nomActeurs.length != 0) {
-				criteria.createAlias("film.personnels.personne", "acteurs");
+				criteria.createAlias("film.personnels", "acteurs");
 				criteria.createAlias("acteurs.personne", "personne");
 				
 				for (String acteur : nomActeurs) {

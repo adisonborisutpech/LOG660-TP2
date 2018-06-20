@@ -1,4 +1,9 @@
+package com.log660.controllers;
 import java.util.List;
+
+import com.log660.beans.Utilisateur;
+import com.log660.services.UtilisateurDAO;
+import com.log660.ui.Window;
 
 public class Controller {
 
@@ -15,13 +20,21 @@ public class Controller {
 
     public static boolean attemptLogin (String loginName, String password) {
         //appel a la BD pour verifier credentials
+    	boolean success = false;
 
+    	Utilisateur utilisateur = UtilisateurDAO.getUtilisateurByEmail(loginName);
         //Hibernate doit retourner un boolean si ca a marche ou non, et si non un message d'erreur aussi
 
         //si le login a marche
-        login = loginName;
+    	if (utilisateur.getMotdepasse().equals(password)) {
+    		login = loginName;
+    		success = true;
+    		System.out.println("Login successful...");
+    	} else {
+    		System.out.println("Login not successful...");
+    	}
 
-        return true;
+        return success;
     }
 
 
