@@ -16,6 +16,7 @@ import com.log660.utils.HibernateUtil;
 
 public class LocationDAO {
 	
+	// Retourne une liste de toutes les locations effectuées par un utilisateur
 	public static List<Locationfilm> getLocationByUtilisateurId(int utilisateurGUID) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -40,6 +41,7 @@ public class LocationDAO {
 		return locations;
 	}
 	
+	// Retourne une liste de toutes les locations effectuées pour un film
 	public static List<Locationfilm> getLocationByFilmId(int filmGUID) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();

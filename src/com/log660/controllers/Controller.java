@@ -2,7 +2,13 @@ package com.log660.controllers;
 import java.util.List;
 
 import com.log660.beans.Utilisateur;
+import com.log660.beans.Locationfilm;
+import com.log660.beans.Personne;
+import com.log660.beans.Film;
 import com.log660.services.UtilisateurDAO;
+import com.log660.services.FilmDAO;
+import com.log660.services.LocationDAO;
+import com.log660.services.PersonneDAO;
 import com.log660.ui.Window;
 
 public class Controller {
@@ -38,8 +44,8 @@ public class Controller {
     }
 
 
-    public static List<Object> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
-                                       String[] nomPaysProduction, String[] langueOriginale, String[] genreFilm,
+    public static List<Film> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
+                                       String[] nomPaysProduction, String langueOriginale, String[] genreFilm,
                                        String[] nomActeur, String[] nomRealisateur) {
         //appel a la BD pour recherche de films
 
@@ -59,16 +65,22 @@ public class Controller {
 
 
         //ce serait aussi utile de donner le nombre de films en stock
+    	
+    	List<Film> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, genreFilm, nomActeur, nomRealisateur);
 
-        return null;
+        return listeFilms;
 
     }
 
-    public static boolean locationFilm (String titreFilm, String loginName) {
+    public static boolean locationFilm (int filmGUID, String loginName) {
         //appel a la BD pour verifier que le  forfait permet la location et qu<un film est disponible
-
+    	
+    	Utilisateur user = UtilisateurDAO.getUtilisateurByEmail(loginName);
+    	
+    	boolean success = LocationDAO.createNewLocation(user.getGuid(), filmGUID);
+    	
         //si oui, retourner true, si non false
-        return true;
+        return success;
     }
 
 
