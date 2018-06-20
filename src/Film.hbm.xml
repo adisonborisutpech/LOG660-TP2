@@ -9,7 +9,7 @@
         <property generated="never" lazy="false" name="titre" optimistic-lock="true" type="string" unique="false">
             <column length="100" name="TITRE"/>
         </property>
-        <property generated="never" lazy="false" name="anneesortie" optimistic-lock="true" type="java.lang.Short" unique="false">
+        <property generated="never" lazy="false" name="anneesortie" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="ANNEESORTIE" precision="4" scale="0"/>
         </property>
         <property generated="never" lazy="false" name="paysproduction" optimistic-lock="true" type="string" unique="false">

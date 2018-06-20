@@ -17,7 +17,7 @@ public class Film implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int guid;
 	private String titre;
-	private Short anneesortie;
+	private Integer anneesortie;
 	private String paysproduction;
 	private String langueoriginale;
 	private Short dureefilm;
@@ -30,7 +30,7 @@ public class Film implements java.io.Serializable {
 	public Film() {
 	}
 
-	public Film(String titre, Short anneesortie, String paysproduction, String langueoriginale,
+	public Film(String titre, Integer anneesortie, String paysproduction, String langueoriginale,
 			Short dureefilm, Clob resumescenario, Short quantite, Set<Genre> genres, Set<Personnel> personnels, Set<Locationfilm> locationfilms) {
 		this.titre = titre;
 		this.anneesortie = anneesortie;
@@ -61,11 +61,11 @@ public class Film implements java.io.Serializable {
 		this.titre = titre;
 	}
 
-	public Short getAnneesortie() {
+	public Integer getAnneesortie() {
 		return this.anneesortie;
 	}
 
-	public void setAnneesortie(Short anneesortie) {
+	public void setAnneesortie(Integer anneesortie) {
 		this.anneesortie = anneesortie;
 	}
 

@@ -3,6 +3,11 @@ package com.log660.services;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
 import com.log660.beans.Locationfilm;
 import com.log660.utils.HibernateUtil;
 
