@@ -44,8 +44,8 @@ public class Controller {
     }
 
 
-    public static List<Film> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
-                                       String[] nomPaysProduction, String langueOriginale, String[] genreFilm,
+    public static List<Object> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
+                                       String[] nomPaysProduction, String[] langueOriginale, String[] genreFilm,
                                        String[] nomActeur, String[] nomRealisateur) {
         //appel a la BD pour recherche de films
 
@@ -66,7 +66,7 @@ public class Controller {
 
         //ce serait aussi utile de donner le nombre de films en stock
     	
-    	List<Film> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, genreFilm, nomActeur, nomRealisateur);
+    	List<Object> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, genreFilm, nomActeur, nomRealisateur);
 
         return listeFilms;
 
