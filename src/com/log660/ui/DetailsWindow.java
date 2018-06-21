@@ -30,6 +30,7 @@ public class DetailsWindow extends JFrame {
             c.fill = GridBagConstraints.HORIZONTAL;
             this.setVisible(true);
             
+            int idFilm = Integer.parseInt(results.get(11).get(0));
             ArrayList<String> nomActeurs = new ArrayList();
             ArrayList<String> ids = new ArrayList();
             //debug

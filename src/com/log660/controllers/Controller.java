@@ -140,6 +140,10 @@ public class Controller {
     	}
     	results.add(temp);
     	
+    	temp = new ArrayList();
+    	temp.add(Integer.toString(film.getGuid()));//11
+    	results.add(temp);
+    	
     	return results;
     }
 
