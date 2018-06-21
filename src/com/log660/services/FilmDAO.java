@@ -63,7 +63,7 @@ public class FilmDAO {
 
 			if (languesOriginales.length != 0) {
 				for (String langue : languesOriginales) {
-					criteria.add(Restrictions.eq("langueoriginale", languesOriginales));
+					criteria.add(Restrictions.eq("langueoriginale", langue));
 				}
 			} 
 
