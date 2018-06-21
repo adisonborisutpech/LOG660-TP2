@@ -2,6 +2,8 @@ package com.log660.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import com.log660.beans.Utilisateur;
 import com.log660.beans.Locationfilm;
 import com.log660.beans.Personne;
@@ -106,7 +108,8 @@ public class Controller {
         	temp.add(genre.getNom());
     	}
     	results.add(temp);
-    	
+
+    	Hibernate.initialize(film.getPersonnels());
     	temp = new ArrayList();
     	for(Personnel perso : film.getPersonnels()) {
     		if(perso.getRolepersonne().getNom().equals("Directeur")) {//8

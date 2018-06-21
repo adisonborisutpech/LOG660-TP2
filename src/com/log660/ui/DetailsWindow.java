@@ -61,7 +61,10 @@ public class DetailsWindow extends JFrame {
             c.gridx = 0 ;c.gridy = 5; c.weightx = 0.5; c.weighty = 0.05;
             this.add(genreFilm,c);
 
-            JLabel realisateurFilm = new JLabel("Realisateur : " + results.get(8).get(0));
+            JLabel realisateurFilm = new JLabel("Realisateur : ");
+            if(results.get(8).size() > 0) {
+            	realisateurFilm.setText(realisateurFilm.getText() + results.get(8).get(0));
+            }
             c.gridx = 0 ;c.gridy = 6; c.weightx = 0.5; c.weighty = 0.05;
             this.add(realisateurFilm,c);
 
@@ -78,10 +81,10 @@ public class DetailsWindow extends JFrame {
             });
 
             //TODO generer les listes des scenaristes et des acteurs (roles)
-            String[] scenaristes = (String[]) results.get(9).toArray();
+            String[] scenaristes = results.get(9).toArray(new String[results.get(9).size()]);
             JList listeScenaristes = new JList(scenaristes);
 
-            String[] acteurs = (String[]) results.get(10).toArray();
+            String[] acteurs = results.get(10).toArray(new String[results.get(10).size()]);
             JList listeActeurs = new JList(acteurs);
 
             JLabel scenaristesText = new JLabel("Scenaristes");
@@ -120,7 +123,7 @@ public class DetailsWindow extends JFrame {
             resumeScenario.setMaximumSize(new Dimension(300,100));
             this.add(resumeScenario,c);
 
-            JLabel copiesFilmText = new JLabel("Copies disponibles : " + results.get(6));
+            JLabel copiesFilmText = new JLabel("Copies disponibles : " + results.get(6).get(0));
             c.gridx = 0 ;c.gridy = 14; c.weightx = 0.5; c.weighty = 0.05;
             this.add(copiesFilmText,c);
 

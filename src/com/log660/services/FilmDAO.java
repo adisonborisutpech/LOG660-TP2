@@ -1,6 +1,7 @@
 package com.log660.services;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,6 +24,12 @@ public class FilmDAO {
 			
 			trans = session.beginTransaction();		
 			film = (Film)session.createCriteria(Film.class).add(Restrictions.eq("guid", filmGUID)).uniqueResult();
+	    	Hibernate.initialize(film.getGenres());
+	    	Hibernate.initialize(film.getPersonnels());
+	    	for(Personnel perso : film.getPersonnels()) {
+		    	Hibernate.initialize(perso.getPersonne());
+		    	Hibernate.initialize(perso.getRolepersonne());
+	    	}
 			System.out.println(film.getTitre());
 			System.out.println(film.getPersonnels().iterator().next().getPersonne().getNom().toString());
 			trans.commit();
