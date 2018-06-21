@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import com.log660.beans.Film;
 import com.log660.utils.HibernateUtil;
@@ -48,7 +49,7 @@ public class FilmDAO {
 			trans = session.beginTransaction();		
 			Criteria criteria = session.createCriteria(Film.class, "film");
 			if (!chaineNomFilm.isEmpty()) {
-				criteria.add(Restrictions.eq("titre", chaineNomFilm));
+				criteria.add(Restrictions.like("titre", chaineNomFilm, MatchMode.ANYWHERE));
 			}
 
 			if (anneeMin != -1 && anneeMax != -1) {
@@ -93,6 +94,10 @@ public class FilmDAO {
 			films = criteria.list();
 			//System.out.println(films.get(0).getTitre());
 			System.out.println(films.size());
+			for(Film film : films) {
+				System.out.println(film.getTitre() + " - " + film.getGuid());
+			}
+			System.out.println();
 			trans.commit();
 			
 		} catch (HibernateException e) {

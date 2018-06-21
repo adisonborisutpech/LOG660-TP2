@@ -16,7 +16,7 @@ public class Main {
 		String[] test2 = {};
 		String[] test3 = {};
 		//FilmDAO.getFilmByCriteria("", 1997, 1997, test, test4, test1, test2, test3);
-		Controller.searchMovie("", 1997, 1997, test, test4, test1, test2, test3);
+		Controller.searchMovie("Die Ha", 1900, 2000, test, test4, test1, test2, test3);
 		//LocationDAO.getLocationByUtilisateurId(441887);
 	}
 }
