@@ -3,6 +3,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.hibernate.Hibernate;
 
 import com.log660.beans.Utilisateur;
@@ -30,20 +33,27 @@ public class Controller {
         return w;
     }
 
-    public static boolean attemptLogin (String loginName, String password) {
-        //appel a la BD pour verifier credentials
+    public static boolean attemptLogin (String email, String password) {
+        //appel a la BD pour verifier credentiales
     	boolean success = false;
 
-    	Utilisateur utilisateur = UtilisateurDAO.getUtilisateurByEmail(loginName);
-        //Hibernate doit retourner un boolean si ca a marche ou non, et si non un message d'erreur aussi
+    	Utilisateur utilisateur = UtilisateurDAO.getUtilisateurByEmail(email);
+    	//Si l'utilisateur n'exista pas
+    	if(!( utilisateur instanceof Utilisateur)) {
+    		JOptionPane.showMessageDialog(new JFrame(), "courriel non valide", "Dialog", 
+    				JOptionPane.ERROR_MESSAGE);
+    	}
 
         //si le login a marche
     	if (utilisateur.getMotdepasse().equals(password)) {
-    		login = loginName;
+    		login = email;
     		success = true;
     		System.out.println("Login successful...");
     	} else {
     		System.out.println("Login not successful...");
+			//Si bone courriel mais mauvais mot de passe;
+    		JOptionPane.showMessageDialog(new JFrame(), "mot de passe non valide", "Dialog", 
+    				JOptionPane.ERROR_MESSAGE);
     	}
 
         return success;
