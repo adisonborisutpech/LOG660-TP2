@@ -1,5 +1,6 @@
 package com.log660.ui;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.*;
@@ -34,7 +35,14 @@ public class BioWindow extends JFrame{
             JLabel lieuNaissance = new JLabel("Lieu de naissance : " + personne.getLieunaissance());
             this.add(lieuNaissance);
 
-            JTextArea shortBio = new JTextArea(personne.getBiographie().toString(),10,30);
+            String bioString = "";
+        	try {
+                bioString = personne.getBiographie().getSubString(1, (int) personne.getBiographie().length());
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}//5
+        	JTextArea shortBio = new JTextArea(bioString,10,30);
             shortBio.setLineWrap(true);
             shortBio.setWrapStyleWord(true);
             shortBio.setMaximumSize(new Dimension(300,500));

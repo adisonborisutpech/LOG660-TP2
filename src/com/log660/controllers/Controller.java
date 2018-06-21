@@ -1,4 +1,5 @@
 package com.log660.controllers;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +98,12 @@ public class Controller {
     	temp.add(film.getDureefilm().toString());//4
     	results.add(temp);
     	temp = new ArrayList();
-    	temp.add(film.getResumescenario().toString());//5
+    	try {
+			temp.add(film.getResumescenario().getSubString(1, (int) film.getResumescenario().length()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//5
     	results.add(temp);
     	temp = new ArrayList();
     	temp.add(film.getQuantite().toString());//6
@@ -109,7 +115,6 @@ public class Controller {
     	}
     	results.add(temp);
 
-    	Hibernate.initialize(film.getPersonnels());
     	temp = new ArrayList();
     	for(Personnel perso : film.getPersonnels()) {
     		if(perso.getRolepersonne().getNom().equals("Directeur")) {//8
@@ -136,7 +141,6 @@ public class Controller {
     	results.add(temp);
     	
     	return results;
-    	
     }
 
     public static Personne getPersonneById (int personneID) {

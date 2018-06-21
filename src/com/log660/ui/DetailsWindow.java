@@ -70,7 +70,7 @@ public class DetailsWindow extends JFrame {
             String genres = "";
             
             for(String genre : results.get(7)) {
-            	genres += genre;
+            	genres += genre + ", ";
             }
 
             JLabel genreFilm = new JLabel(genres);
