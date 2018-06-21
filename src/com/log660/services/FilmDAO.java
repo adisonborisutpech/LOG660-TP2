@@ -35,14 +35,14 @@ public class FilmDAO {
 		return film;
 	}
 	
-	public static List<Object> getFilmByCriteria(String chaineNomFilm, Integer anneeMin, Integer anneeMax, // Min, Max -1 if nothing
+	public static List<Film> getFilmByCriteria(String chaineNomFilm, Integer anneeMin, Integer anneeMax, // Min, Max -1 if nothing
             String[] nomPaysProduction, String[] languesOriginales, String[] genresFilm,
             String[] nomActeurs, String[] nomRealisateurs) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction trans = null;
-		List<Object> films = null;
+		List<Film> films = null;
 		try {
 			
 			trans = session.beginTransaction();		
@@ -105,6 +105,8 @@ public class FilmDAO {
 		} finally {
 			session.close();
 		}	
+		
+		
 		
 		return films;
 	}
