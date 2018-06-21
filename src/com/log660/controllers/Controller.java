@@ -5,7 +5,9 @@ import java.util.List;
 import com.log660.beans.Utilisateur;
 import com.log660.beans.Locationfilm;
 import com.log660.beans.Personne;
+import com.log660.beans.Personnel;
 import com.log660.beans.Film;
+import com.log660.beans.Genre;
 import com.log660.services.UtilisateurDAO;
 import com.log660.services.FilmDAO;
 import com.log660.services.LocationDAO;
@@ -53,7 +55,7 @@ public class Controller {
     	for(Film film : listeFilms) {
     		ArrayList<String> infosFilm = new ArrayList();
     		infosFilm.add(film.getTitre());
-    		infosFilm.add(film.getQuantite().toString());
+    		infosFilm.add(Integer.toString(film.getGuid()));
     		result.add(infosFilm);
     	}
     	
@@ -72,6 +74,66 @@ public class Controller {
         return success;
     }
 
-
+    // TODO : Degeux, a refaire
+    public static ArrayList<ArrayList<String>> getFilmById (int filmGUID) {
+    	ArrayList<ArrayList<String>> results = new ArrayList();
+    	ArrayList<String> temp = new ArrayList();
+    	Film film = FilmDAO.getFilmById(filmGUID);
+    	
+    	temp.add(film.getTitre());//0
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getAnneesortie().toString());//1
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getPaysproduction());//2
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getLangueoriginale());//3
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getDureefilm().toString());//4
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getResumescenario().toString());//5
+    	results.add(temp);
+    	temp = new ArrayList();
+    	temp.add(film.getQuantite().toString());//6
+    	results.add(temp);
+    	temp = new ArrayList();
+    	
+    	for(Genre genre : film.getGenres()) {//7
+        	temp.add(genre.getNom());
+    	}
+    	results.add(temp);
+    	
+    	temp = new ArrayList();
+    	for(Personnel perso : film.getPersonnels()) {
+    		if(perso.getRolepersonne().getNom().equals("Directeur")) {//8
+            	temp.add(perso.getPersonne().getNom());
+            	temp.add(perso.getPersonne().getBiographie().toString());
+    		}
+    	}
+    	results.add(temp);
+    	
+    	temp = new ArrayList();
+    	for(Personnel perso : film.getPersonnels()) {
+    		if(perso.getRolepersonne().getNom().equals("Scenariste")) {//9
+            	temp.add(perso.getPersonne().getNom());
+    		}
+    	}
+    	results.add(temp);
+    	
+    	temp = new ArrayList();
+    	for(Personnel perso : film.getPersonnels()) {
+    		if(!perso.getRolepersonne().getNom().equals("Directeur") && !perso.getRolepersonne().getNom().equals("Scenariste")) {//10
+            	temp.add(perso.getPersonne().getNom());
+    		}
+    	}
+    	results.add(temp);
+    	
+    	return results;
+    	
+    }
 
 }

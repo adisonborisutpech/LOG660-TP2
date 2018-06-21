@@ -3,14 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DetailsWindow extends JFrame {
 
     Contents c;
     BioWindow bioW;
 
-    public DetailsWindow (Object o) {
-        c = new Contents();
+    public DetailsWindow (ArrayList<ArrayList<String>> results) {
+        c = new Contents(results);
         this.setVisible(true);
         this.add(c);
     }
@@ -18,7 +19,7 @@ public class DetailsWindow extends JFrame {
 
     private class Contents extends JPanel {
 
-        public Contents() {
+        public Contents(ArrayList<ArrayList<String>> results) {
             this.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
             c.fill = GridBagConstraints.HORIZONTAL;
@@ -26,37 +27,41 @@ public class DetailsWindow extends JFrame {
 
             //TODO tous les elements ici doivent aller chercher les infos de l'objet o
 
-            JLabel titreFilm = new JLabel("Titre du film : " + "Shrek");
+            JLabel titreFilm = new JLabel("Titre du film : " + results.get(0).get(0));
             c.gridx = 0 ;c.gridy = 0; c.weightx = 0.5; c.weighty = 0.05;
             this.add(titreFilm,c);
 
-            JLabel anneeFilm = new JLabel("Annee de sortie : " + "2001");
+            JLabel anneeFilm = new JLabel("Annee de sortie : " + results.get(1).get(0));
             c.gridx = 0 ;c.gridy = 1; c.weightx = 0.5; c.weighty = 0.05;
             this.add(anneeFilm, c);
 
             //TODO construire une string a partir des donnees
-            String paysProduction = "USA, USA, USA, AMERICA, ETC";
+            String paysProduction = results.get(2).get(0);
 
             JLabel paysFilm =  new JLabel("Pays de production : " + paysProduction);
             c.gridx = 0 ;c.gridy = 2; c.weightx = 0.5; c.weighty = 0.05;
             this.add(paysFilm, c);
 
-            JLabel langueFilm = new JLabel("Langue originale : " + "Anglais");
+            JLabel langueFilm = new JLabel("Langue originale : " + results.get(3).get(0));
             c.gridx = 0 ;c.gridy = 3; c.weightx = 0.5; c.weighty = 0.05;
             this.add(langueFilm,c);
 
-            JLabel dureeFilm = new JLabel("Duree du film : " + "1h30m");
+            JLabel dureeFilm = new JLabel("Duree du film : " + results.get(4).get(0));
             c.gridx = 0 ;c.gridy = 4; c.weightx = 0.5; c.weighty = 0.05;
             this.add(dureeFilm,c);
 
-            //TODO construire une stringe des genres du film
-            String genres = "Ogre, Onion, Donkey";
+            //TODO construire une stringe des genres du film***************
+            String genres = "";
+            
+            for(String genre : results.get(7)) {
+            	genres += genre;
+            }
 
             JLabel genreFilm = new JLabel(genres);
             c.gridx = 0 ;c.gridy = 5; c.weightx = 0.5; c.weighty = 0.05;
             this.add(genreFilm,c);
 
-            JLabel realisateurFilm = new JLabel("Realisateur : " + "Andrew Adamson");
+            JLabel realisateurFilm = new JLabel("Realisateur : " + results.get(8).get(0));
             c.gridx = 0 ;c.gridy = 6; c.weightx = 0.5; c.weighty = 0.05;
             this.add(realisateurFilm,c);
 
@@ -73,10 +78,10 @@ public class DetailsWindow extends JFrame {
             });
 
             //TODO generer les listes des scenaristes et des acteurs (roles)
-            String[] scenaristes = {"Ted Elliot", "Terry Rosso", "Joe Stillman"};
+            String[] scenaristes = (String[]) results.get(9).toArray();
             JList listeScenaristes = new JList(scenaristes);
 
-            String[] acteurs = {"Mike Myers (Shrek)","Eddie Murphy (Donkey)","Cameron Diaz (Fiona)"};
+            String[] acteurs = (String[]) results.get(10).toArray();
             JList listeActeurs = new JList(acteurs);
 
             JLabel scenaristesText = new JLabel("Scenaristes");
@@ -108,14 +113,14 @@ public class DetailsWindow extends JFrame {
                 }
             });
 
-            JTextArea resumeScenario = new JTextArea("After his swamp is filled with magical creatures, Shrek agrees to rescue Princess Fiona for a villainous lord in order to get his land back.",5,40);
+            JTextArea resumeScenario = new JTextArea(results.get(5).get(0),5,40);
             c.gridx = 0 ;c.gridy = 13; c.weightx = 0.5; c.weighty = 0.15;
             resumeScenario.setLineWrap(true);
             resumeScenario.setWrapStyleWord(true);
             resumeScenario.setMaximumSize(new Dimension(300,100));
             this.add(resumeScenario,c);
 
-            JLabel copiesFilmText = new JLabel("Copies disponibles : " + 999999);
+            JLabel copiesFilmText = new JLabel("Copies disponibles : " + results.get(6));
             c.gridx = 0 ;c.gridy = 14; c.weightx = 0.5; c.weighty = 0.05;
             this.add(copiesFilmText,c);
 

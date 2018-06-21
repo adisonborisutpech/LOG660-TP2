@@ -1,5 +1,8 @@
 package com.log660.ui;
 import javax.swing.*;
+
+import com.log660.controllers.Controller;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +19,12 @@ public class Result extends JPanel {
         JLabel tInfos = new JLabel("Resultats de la recherche");
         this.add(tInfos);
         ArrayList<String> titres = new ArrayList();
+        ArrayList<String> ids = new ArrayList();
         //debug
         for(ArrayList<String> film : donnees) {
         	titres.add(film.get(0));
+        	ids.add(film.get(1));
         }
-        //String[] titres = {"Shrek (2001)","Shrek 2 (2004)", "Shrek the Third (2007)", "Shrek INFINITY (2053)"};
 
         JList liste = new JList(titres.toArray());
         /*
@@ -38,10 +42,9 @@ public class Result extends JPanel {
         boutonDetails.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //aller chercher l'objet courament selectionne dans donnees
-                //l'envoyer a une nouvelle fenetre
+             ArrayList<ArrayList<String>> results = Controller.getFilmById(Integer.parseInt(ids.get(liste.getSelectedIndex())));
 
-             detW = new DetailsWindow(new Object());
+             detW = new DetailsWindow(results);
              detW.pack();
             }
         });
