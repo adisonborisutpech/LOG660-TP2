@@ -1,6 +1,7 @@
 package com.log660.ui;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Window extends JFrame{
@@ -25,7 +26,7 @@ public class Window extends JFrame{
             this.repaint();
     }
 
-    public void switchToResultsPanel (List<Object> resultBD) {
+    public void switchToResultsPanel (ArrayList<ArrayList<String>> resultBD) {
         System.out.println("Switching to result panel");
         this.getContentPane().removeAll();
         createResultPanel(resultBD);
@@ -52,7 +53,7 @@ public class Window extends JFrame{
         this.repaint();
     }
 
-    private void createResultPanel (List<Object> retourBD) {
+    private void createResultPanel (ArrayList<ArrayList<String>> retourBD) {
         resultsPanel = new Result(retourBD);
         this.setPreferredSize(new Dimension(400,600));
         this.add(resultsPanel);

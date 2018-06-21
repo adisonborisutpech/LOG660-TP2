@@ -6,6 +6,7 @@ import com.log660.controllers.Controller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Search extends JPanel {
@@ -93,7 +94,7 @@ public class Search extends JPanel {
         boutonRecherche.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<Object> resultat = Controller.searchMovie(titreFilm.getText(),extraireDate(anneeFilm1.getText()), extraireDate(anneeFilm2.getText()),
+                ArrayList<ArrayList<String>> resultat = Controller.searchMovie(titreFilm.getText(),extraireDate(anneeFilm1.getText()), extraireDate(anneeFilm2.getText()),
                         commaSeparator(paysFilm.getText()), commaSeparator(langueFilm.getText()), commaSeparator(genreFilm.getText()),
                         commaSeparator(acteursFilm.getText()),commaSeparator(realisFilm.getText()));
 

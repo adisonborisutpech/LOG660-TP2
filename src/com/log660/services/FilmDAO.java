@@ -36,7 +36,7 @@ public class FilmDAO {
 	}
 	
 	public static List<Film> getFilmByCriteria(String chaineNomFilm, Integer anneeMin, Integer anneeMax, // Min, Max -1 if nothing
-            String[] nomPaysProduction, String langueOriginale, String[] genresFilm,
+            String[] nomPaysProduction, String[] languesOriginales, String[] genresFilm,
             String[] nomActeurs, String[] nomRealisateurs) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -61,8 +61,10 @@ public class FilmDAO {
 				}
 			}
 
-			if (!langueOriginale.isEmpty()) {
-				criteria.add(Restrictions.eq("langueoriginale", langueOriginale));
+			if (languesOriginales.length != 0) {
+				for (String langue : languesOriginales) {
+					criteria.add(Restrictions.eq("langueoriginale", languesOriginales));
+				}
 			} 
 
 			if (genresFilm.length != 0) {
@@ -99,6 +101,8 @@ public class FilmDAO {
 		} finally {
 			session.close();
 		}	
+		
+		
 		
 		return films;
 	}

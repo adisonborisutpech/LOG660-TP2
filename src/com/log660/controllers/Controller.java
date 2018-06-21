@@ -1,4 +1,5 @@
 package com.log660.controllers;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.log660.beans.Utilisateur;
@@ -44,31 +45,19 @@ public class Controller {
     }
 
 
-    public static List<Film> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
-                                       String[] nomPaysProduction, String langueOriginale, String[] genreFilm,
+    public static ArrayList<ArrayList<String>> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
+                                       String[] nomPaysProduction, String[] langueOriginale, String[] genreFilm,
                                        String[] nomActeur, String[] nomRealisateur) {
-        //appel a la BD pour recherche de films
-
-        /*doit retourner tous les films qui matchent, avec ces infos :
-        • Le titre du film ;
-        • L’annee de sortie du film ; ´
-        • Le nom de tous les pays de production ;
-        • La langue originale du film ;
-        • La duree du film (en minutes) ; ´
-        • La liste de tous les genres du film ;
-        • Le nom du realisateur ; ´
-        • Le nom de tous les scenaristes ; ´
-        • Le nom de tous les acteurs et de leur(s) personnage(s) dans le film ;
-        • Le resume du scenario du film
-        */
-        //ces infos seront utilsees pour creer des objets film
-
-
-        //ce serait aussi utile de donner le nombre de films en stock
-    	
+    	ArrayList<ArrayList<String>> result = new ArrayList();
     	List<Film> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, genreFilm, nomActeur, nomRealisateur);
-
-        return listeFilms;
+    	for(Film film : listeFilms) {
+    		ArrayList<String> infosFilm = new ArrayList();
+    		infosFilm.add(film.getTitre());
+    		infosFilm.add(film.getQuantite().toString());
+    		result.add(infosFilm);
+    	}
+    	
+        return result;
 
     }
 
