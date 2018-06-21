@@ -94,7 +94,7 @@ public class Search extends JPanel {
         boutonRecherche.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<ArrayList<String>> resultat = Controller.searchMovie(titreFilm.getText(),extraireDate(anneeFilm1.getText()), extraireDate(anneeFilm2.getText()),
+                ArrayList<ArrayList<String>> resultat = Controller.searchMovie(titreFilm.getText(),extraireDate(anneeFilm1.getText(),false), extraireDate(anneeFilm2.getText(),true),
                         commaSeparator(paysFilm.getText()), commaSeparator(langueFilm.getText()), commaSeparator(genreFilm.getText()),
                         commaSeparator(acteursFilm.getText()),commaSeparator(realisFilm.getText()));
 
@@ -105,8 +105,10 @@ public class Search extends JPanel {
 
     }
 
-    private int extraireDate (String readLine) {
-        int annee = -1;
+    private int extraireDate (String readLine, boolean max) {
+        int annee;
+        if (!max) annee = 0;
+        else annee = 3000;
         //valeur defaut en tout cas d'erreur
 
         try {

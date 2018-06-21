@@ -32,7 +32,7 @@ public class Controller {
     public static Window getWindowInstance() {
         return w;
     }
-
+    
     public static boolean attemptLogin (String email, String password) {
         //appel a la BD pour verifier credentiales
     	boolean success = false;
@@ -51,7 +51,7 @@ public class Controller {
     		System.out.println("Login successful...");
     	} else {
     		System.out.println("Login not successful...");
-			//Si bone courriel mais mauvais mot de passe;
+			//Si bon courriel mais mauvais mot de passe;
     		JOptionPane.showMessageDialog(new JFrame(), "mot de passe non valide", "Dialog", 
     				JOptionPane.ERROR_MESSAGE);
     	}
@@ -63,10 +63,14 @@ public class Controller {
     public static ArrayList<ArrayList<String>> searchMovie (String chaineNomFilm, int anneeMin, int anneeMax,
                                        String[] nomPaysProduction, String[] langueOriginale, String[] genreFilm,
                                        String[] nomActeur, String[] nomRealisateur) {
-    	ArrayList<ArrayList<String>> result = new ArrayList();
-    	List<Film> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, genreFilm, nomActeur, nomRealisateur);
+    	
+    	ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+    	
+    	List<Film> listeFilms = FilmDAO.getFilmByCriteria(chaineNomFilm, anneeMin, anneeMax, nomPaysProduction, langueOriginale, 
+    			genreFilm, nomActeur, nomRealisateur);
+    	
     	for(Film film : listeFilms) {
-    		ArrayList<String> infosFilm = new ArrayList();
+    		ArrayList<String> infosFilm = new ArrayList<String>();
     		infosFilm.add(film.getTitre());
     		infosFilm.add(Integer.toString(film.getGuid()));
     		result.add(infosFilm);
