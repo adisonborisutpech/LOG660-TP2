@@ -130,7 +130,7 @@ public class Controller {
     	temp = new ArrayList();
     	for(Personnel perso : film.getPersonnels()) {
     		if(!perso.getRolepersonne().getNom().equals("Directeur") && !perso.getRolepersonne().getNom().equals("Scenariste")) {//10
-            	temp.add(perso.getPersonne().getNom());
+            	temp.add(perso.getPersonne().getNom() + "," + perso.getPersonne().getGuid());
     		}
     	}
     	results.add(temp);
@@ -139,4 +139,8 @@ public class Controller {
     	
     }
 
+    public static Personne getPersonneById (int personneID) {
+    	Personne personne = PersonneDAO.getPersonneById(personneID);
+        return personne;
+    }
 }

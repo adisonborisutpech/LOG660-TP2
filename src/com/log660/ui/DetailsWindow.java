@@ -1,5 +1,10 @@
 package com.log660.ui;
 import javax.swing.*;
+
+import com.log660.beans.Personne;
+import com.log660.controllers.Controller;
+import com.log660.services.PersonneDAO;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +29,17 @@ public class DetailsWindow extends JFrame {
             GridBagConstraints c = new GridBagConstraints();
             c.fill = GridBagConstraints.HORIZONTAL;
             this.setVisible(true);
+            
+            ArrayList<String> nomActeurs = new ArrayList();
+            ArrayList<String> ids = new ArrayList();
+            //debug
+            for(String acteur : results.get(10)) {
+            	String[] data = acteur.split(",");
+            	nomActeurs.add(data[0]);
+            	System.out.println(data[1]);
+            	ids.add(data[1]);
+            }
+            System.out.println(ids.toString());
 
             //TODO tous les elements ici doivent aller chercher les infos de l'objet o
 
@@ -76,6 +92,7 @@ public class DetailsWindow extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     //TODO creer un autre popup avec la bio
+                	
                     System.out.println("infos du realisateur");
                 }
             });
@@ -84,7 +101,7 @@ public class DetailsWindow extends JFrame {
             String[] scenaristes = results.get(9).toArray(new String[results.get(9).size()]);
             JList listeScenaristes = new JList(scenaristes);
 
-            String[] acteurs = results.get(10).toArray(new String[results.get(10).size()]);
+            String[] acteurs = nomActeurs.toArray(new String[nomActeurs.size()]);
             JList listeActeurs = new JList(acteurs);
 
             JLabel scenaristesText = new JLabel("Scenaristes");
@@ -111,7 +128,9 @@ public class DetailsWindow extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     //TODO selon l'acteur selectionne, creer un popup avec la bio
-                    bioW = new BioWindow(new Object());
+                	System.out.println(listeActeurs.getSelectedIndex());
+                	Personne acteur = Controller.getPersonneById(Integer.parseInt(ids.get(listeActeurs.getSelectedIndex())));
+                    bioW = new BioWindow(acteur);
                     bioW.pack();
                 }
             });
@@ -141,11 +160,7 @@ public class DetailsWindow extends JFrame {
                 }
             });
 
-
             }
-
-
-
         }
 
         public void createPopupLocation (boolean succes) {

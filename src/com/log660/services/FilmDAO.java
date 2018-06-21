@@ -101,7 +101,6 @@ public class FilmDAO {
 			}
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			films = criteria.list();
-			//System.out.println(films.get(0).getTitre());
 			System.out.println(films.size());
 			for(Film film : films) {
 				System.out.println(film.getTitre() + " - " + film.getGuid());
@@ -115,8 +114,6 @@ public class FilmDAO {
 		} finally {
 			session.close();
 		}	
-		
-		
 		
 		return films;
 	}
