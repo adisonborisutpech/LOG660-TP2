@@ -52,6 +52,16 @@ public class Result extends JPanel {
              detW.pack();
             }
         });
+        
+        JButton retour = new JButton("Retour");
+        this.add(retour);
+        
+        retour.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        		Controller.getWindowInstance().switchToSearchPanel();
+        	}
+        });
 
     }
 }

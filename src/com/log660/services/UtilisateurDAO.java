@@ -53,7 +53,6 @@ public class UtilisateurDAO {
 		} catch (HibernateException e) {
 			trans.rollback();
 			e.printStackTrace();
-			System.out.println("Not user associated with this email");
 		} finally {
 			session.close();
 		}	
