@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import com.log660.beans.Film;
+import com.log660.beans.Personnel;
 import com.log660.utils.HibernateUtil;
 import java.util.List;
 
@@ -91,6 +92,7 @@ public class FilmDAO {
 					criteria.add(Restrictions.ilike("personne.nom", acteur, MatchMode.ANYWHERE));
 				}
 			}
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			films = criteria.list();
 			//System.out.println(films.get(0).getTitre());
 			System.out.println(films.size());
