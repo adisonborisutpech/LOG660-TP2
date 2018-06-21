@@ -30,6 +30,7 @@ public class DetailsWindow extends JFrame {
             c.fill = GridBagConstraints.HORIZONTAL;
             this.setVisible(true);
             
+            int idFilm = Integer.parseInt(results.get(11).get(0));
             ArrayList<String> nomActeurs = new ArrayList();
             ArrayList<String> ids = new ArrayList();
             //debug
@@ -129,8 +130,8 @@ public class DetailsWindow extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     //TODO selon l'acteur selectionne, creer un popup avec la bio
                 	System.out.println(listeActeurs.getSelectedIndex());
-                	Personne acteur = Controller.getPersonneById(Integer.parseInt(ids.get(listeActeurs.getSelectedIndex())));
-                    bioW = new BioWindow(acteur);
+                	ArrayList<String> results = Controller.getPersonneById(Integer.parseInt(ids.get(listeActeurs.getSelectedIndex())));
+                    bioW = new BioWindow(results);
                     bioW.pack();
                 }
             });
