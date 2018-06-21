@@ -73,10 +73,9 @@ public class FilmDAO {
 				}
 			} 
 
+			criteria.createAlias("film.personnels", "personnels");
+			criteria.createAlias("personnels.personne", "personne");
 			if (nomRealisateurs.length != 0) {
-				criteria.createAlias("film.personnels", "realisateurs");
-				criteria.createAlias("realisateurs.personne", "personne");
-				
 				for (String realisateur : nomRealisateurs) {
 					//System.out.println(realisateur);
 					criteria.add(Restrictions.eq("personne.nom", realisateur));
@@ -84,9 +83,6 @@ public class FilmDAO {
 			}
 			
 			if (nomActeurs.length != 0) {
-				criteria.createAlias("film.personnels", "acteurs");
-				criteria.createAlias("acteurs.personne", "personne");
-				
 				for (String acteur : nomActeurs) {
 					//System.out.println(acteur);
 					criteria.add(Restrictions.eq("personne.nom", acteur));
@@ -94,7 +90,7 @@ public class FilmDAO {
 			}
 			films = criteria.list();
 			//System.out.println(films.get(0).getTitre());
-			//System.out.println(films.size());
+			System.out.println(films.size());
 			trans.commit();
 			
 		} catch (HibernateException e) {
