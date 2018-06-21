@@ -49,7 +49,7 @@ public class FilmDAO {
 			trans = session.beginTransaction();		
 			Criteria criteria = session.createCriteria(Film.class, "film");
 			if (!chaineNomFilm.isEmpty()) {
-				criteria.add(Restrictions.like("titre", chaineNomFilm, MatchMode.ANYWHERE));
+				criteria.add(Restrictions.ilike("titre", chaineNomFilm, MatchMode.ANYWHERE));
 			}
 
 			if (anneeMin != -1 && anneeMax != -1) {
@@ -58,13 +58,13 @@ public class FilmDAO {
 
 			if (nomPaysProduction.length != 0) {
 				for (String nomPays : nomPaysProduction) {
-					criteria.add(Restrictions.eq("paysproduction", nomPays));
+					criteria.add(Restrictions.ilike("paysproduction", nomPays, MatchMode.ANYWHERE));
 				}
 			}
 
 			if (languesOriginales.length != 0) {
 				for (String langue : languesOriginales) {
-					criteria.add(Restrictions.eq("langueoriginale", langue));
+					criteria.add(Restrictions.ilike("langueoriginale", langue, MatchMode.ANYWHERE));
 				}
 			} 
 
@@ -72,7 +72,7 @@ public class FilmDAO {
 				criteria.createAlias("film.genres", "genre");
 				
 				for (String genre : genresFilm) {
-					criteria.add(Restrictions.eq("genre.nom", genre));
+					criteria.add(Restrictions.ilike("genre.nom", genre, MatchMode.ANYWHERE));
 				}
 			} 
 
@@ -81,14 +81,14 @@ public class FilmDAO {
 			if (nomRealisateurs.length != 0) {
 				for (String realisateur : nomRealisateurs) {
 					//System.out.println(realisateur);
-					criteria.add(Restrictions.eq("personne.nom", realisateur));
+					criteria.add(Restrictions.ilike("personne.nom", realisateur, MatchMode.ANYWHERE));
 				}
 			}
 			
 			if (nomActeurs.length != 0) {
 				for (String acteur : nomActeurs) {
 					//System.out.println(acteur);
-					criteria.add(Restrictions.eq("personne.nom", acteur));
+					criteria.add(Restrictions.ilike("personne.nom", acteur, MatchMode.ANYWHERE));
 				}
 			}
 			films = criteria.list();
