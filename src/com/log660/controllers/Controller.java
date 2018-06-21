@@ -147,8 +147,35 @@ public class Controller {
     	return results;
     }
 
-    public static Personne getPersonneById (int personneID) {
+    public static ArrayList<String> getPersonneById (int personneID) {
+    	ArrayList<String> results = new ArrayList();
     	Personne personne = PersonneDAO.getPersonneById(personneID);
-        return personne;
+    	
+    	results.add(personne.getNom());
+    	if(personne.getDatenaissance() != null) {
+        	results.add(personne.getDatenaissance().toString());
+    	}
+    	else {
+    		results.add("");
+    	}
+    	if(personne.getLieunaissance() != null) {
+        	results.add(personne.getLieunaissance());
+    	}
+    	else {
+    		results.add("");
+    	}
+    	try {
+        	if(personne.getBiographie() != null) {
+        		results.add(personne.getBiographie().getSubString(1, (int) personne.getBiographie().length()));
+        	}
+        	else {
+        		results.add("");
+        	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//5
+    	
+        return results;
     }
 }
