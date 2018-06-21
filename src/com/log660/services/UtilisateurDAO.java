@@ -7,6 +7,8 @@ import org.hibernate.criterion.Restrictions;
 import com.log660.beans.Utilisateur;
 import com.log660.utils.HibernateUtil;
 
+import sun.rmi.runtime.Log;
+
 public class UtilisateurDAO {
 	
 	public static Utilisateur getUtilisateurById(int utilisateurGUID) {
@@ -51,6 +53,7 @@ public class UtilisateurDAO {
 		} catch (HibernateException e) {
 			trans.rollback();
 			e.printStackTrace();
+			System.out.println("Not user associated with this email");
 		} finally {
 			session.close();
 		}	

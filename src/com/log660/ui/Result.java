@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result extends JPanel {
-    DetailsWindow detW;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	DetailsWindow detW;
 
     public Result(ArrayList<ArrayList<String>> donnees) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -18,15 +22,15 @@ public class Result extends JPanel {
 
         JLabel tInfos = new JLabel("Resultats de la recherche");
         this.add(tInfos);
-        ArrayList<String> titres = new ArrayList();
-        ArrayList<String> ids = new ArrayList();
+        ArrayList<String> titres = new ArrayList<String>();
+        ArrayList<String> ids = new ArrayList<String>();
         //debug
         for(ArrayList<String> film : donnees) {
         	titres.add(film.get(0));
         	ids.add(film.get(1));
         }
 
-        JList liste = new JList(titres.toArray());
+		JList<Object> liste = new JList<Object>(titres.toArray());
         /*
         for (Object o : donnees) {
             //TODO aller chercher le titre et l'annee du film et creer la liste en bon format

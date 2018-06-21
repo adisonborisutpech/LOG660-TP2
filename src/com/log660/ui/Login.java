@@ -14,7 +14,7 @@ public class Login extends JPanel {
         this.setVisible(true);
         this.setSize(800,600);
 
-        JLabel nameLabel = new JLabel("Nom d'utilisateur");
+        JLabel nameLabel = new JLabel("courriel de l'utilisateur");
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JTextField nameLogin  = new JTextField();

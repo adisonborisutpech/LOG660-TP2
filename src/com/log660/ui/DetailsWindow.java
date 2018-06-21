@@ -130,8 +130,8 @@ public class DetailsWindow extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     //TODO selon l'acteur selectionne, creer un popup avec la bio
                 	System.out.println(listeActeurs.getSelectedIndex());
-                	Personne acteur = Controller.getPersonneById(Integer.parseInt(ids.get(listeActeurs.getSelectedIndex())));
-                    bioW = new BioWindow(acteur);
+                	ArrayList<String> results = Controller.getPersonneById(Integer.parseInt(ids.get(listeActeurs.getSelectedIndex())));
+                    bioW = new BioWindow(results);
                     bioW.pack();
                 }
             });

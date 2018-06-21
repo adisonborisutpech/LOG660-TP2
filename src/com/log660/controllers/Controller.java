@@ -3,6 +3,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.hibernate.Hibernate;
 
 import com.log660.beans.Utilisateur;
@@ -30,20 +33,27 @@ public class Controller {
         return w;
     }
 
-    public static boolean attemptLogin (String loginName, String password) {
-        //appel a la BD pour verifier credentials
+    public static boolean attemptLogin (String email, String password) {
+        //appel a la BD pour verifier credentiales
     	boolean success = false;
 
-    	Utilisateur utilisateur = UtilisateurDAO.getUtilisateurByEmail(loginName);
-        //Hibernate doit retourner un boolean si ca a marche ou non, et si non un message d'erreur aussi
+    	Utilisateur utilisateur = UtilisateurDAO.getUtilisateurByEmail(email);
+    	//Si l'utilisateur n'exista pas
+    	if(!( utilisateur instanceof Utilisateur)) {
+    		JOptionPane.showMessageDialog(new JFrame(), "courriel non valide", "Dialog", 
+    				JOptionPane.ERROR_MESSAGE);
+    	}
 
         //si le login a marche
     	if (utilisateur.getMotdepasse().equals(password)) {
-    		username = loginName;
+    		username = email;
     		success = true;
     		System.out.println("Login successful...");
     	} else {
     		System.out.println("Login not successful...");
+			//Si bone courriel mais mauvais mot de passe;
+    		JOptionPane.showMessageDialog(new JFrame(), "mot de passe non valide", "Dialog", 
+    				JOptionPane.ERROR_MESSAGE);
     	}
 
         return success;
@@ -147,8 +157,35 @@ public class Controller {
     	return results;
     }
 
-    public static Personne getPersonneById (int personneID) {
+    public static ArrayList<String> getPersonneById (int personneID) {
+    	ArrayList<String> results = new ArrayList();
     	Personne personne = PersonneDAO.getPersonneById(personneID);
-        return personne;
+    	
+    	results.add(personne.getNom());
+    	if(personne.getDatenaissance() != null) {
+        	results.add(personne.getDatenaissance().toString());
+    	}
+    	else {
+    		results.add("");
+    	}
+    	if(personne.getLieunaissance() != null) {
+        	results.add(personne.getLieunaissance());
+    	}
+    	else {
+    		results.add("");
+    	}
+    	try {
+        	if(personne.getBiographie() != null) {
+        		results.add(personne.getBiographie().getSubString(1, (int) personne.getBiographie().length()));
+        	}
+        	else {
+        		results.add("");
+        	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//5
+    	
+        return results;
     }
 }
