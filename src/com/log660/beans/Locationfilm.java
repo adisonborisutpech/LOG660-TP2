@@ -31,8 +31,7 @@ public class Locationfilm implements java.io.Serializable {
 		return this.id;
 	}
 	
-	@SuppressWarnings("unused")
-	private void setId(LocationfilmId id) {
+	public void setId(LocationfilmId id) {
 		this.id = id;
 	}
 	

@@ -24,7 +24,7 @@
         <property generated="never" lazy="false" name="resumescenario" optimistic-lock="true" type="clob" unique="false">
             <column name="RESUMESCENARIO"/>
         </property>
-        <property generated="never" lazy="false" name="quantite" optimistic-lock="true" type="java.lang.Short" unique="false">
+        <property generated="never" lazy="false" name="quantite" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="QUANTITE" precision="3" scale="0"/>
         </property>
         <set embed-xml="true" fetch="select" inverse="false" lazy="true" mutable="true" name="genres" optimistic-lock="true" sort="unsorted" table="FILMGENRE">

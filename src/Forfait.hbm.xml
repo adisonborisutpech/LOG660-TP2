@@ -12,10 +12,10 @@
         <property generated="never" lazy="false" name="cout" optimistic-lock="true" type="java.lang.Short" unique="false">
             <column name="COUT" precision="3" scale="0"/>
         </property>
-        <property generated="never" lazy="false" name="quantitelocationmax" optimistic-lock="true" type="java.lang.Byte" unique="false">
+        <property generated="never" lazy="false" name="quantitelocationmax" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="QUANTITELOCATIONMAX" precision="2" scale="0"/>
         </property>
-        <property generated="never" lazy="false" name="dureelocationmax" optimistic-lock="true" type="java.lang.Byte" unique="false">
+        <property generated="never" lazy="false" name="dureelocationmax" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="DUREELOCATIONMAX" precision="2" scale="0"/>
         </property>
         <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="utilisateurs" optimistic-lock="true" sort="unsorted" table="UTILISATEUR">

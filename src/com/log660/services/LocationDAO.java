@@ -5,18 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.log660.beans.Film;
 import com.log660.beans.Locationfilm;
+import com.log660.beans.LocationfilmId;
 import com.log660.beans.Utilisateur;
 import com.log660.utils.HibernateUtil;
 
 public class LocationDAO {
 	
-	// Retourne une liste de toutes les locations effectuées par un utilisateur
+	// Retourne une liste de toutes les locations effectuï¿½es par un utilisateur
 	public static List<Locationfilm> getLocationByUtilisateurId(int utilisateurGUID) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -41,7 +43,7 @@ public class LocationDAO {
 		return locations;
 	}
 	
-	// Retourne une liste de toutes les locations effectuées pour un film
+	// Retourne une liste de toutes les locations effectuï¿½es pour un film
 	public static List<Locationfilm> getLocationByFilmId(int filmGUID) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -77,12 +79,30 @@ public class LocationDAO {
 		Transaction trans = null;
 
 		try {
+			LocationfilmId locationId = new LocationfilmId(filmGUID, utilisateurGUID);
+			Locationfilm location = new Locationfilm();
+			location.setDatelocationfilm(new Date());
+			location.setId(locationId);
 			
-			Locationfilm location = new Locationfilm(film, utilisateur, new Date(), null);
+			trans = session.beginTransaction();	
+			//if (film.getQuantite() != 0) {
+				/*if (utilisateur.getForfait().getNomforfait().equals("DÃ©butant") && utilisateur.getLocationfilms().size() < 1 ||
+						utilisateur.getForfait().getNomforfait().equals("IntermÃ©diaire") && utilisateur.getLocationfilms().size() < 5 ||
+						utilisateur.getForfait().getNomforfait().equals("AvancÃ©") && utilisateur.getLocationfilms().size() < 10
+						) {*/
+					//film.setQuantite(film.getQuantite() - 1);
+					session.save(location);
+					//session.save(film);	
+					trans.commit();
+				/*} else {
+					System.out.println("Vous avez atteint votre limite de location...");
+				}*/
+			/*}
+			else {
+				System.out.println("Il n'y a plus de copie disponible...");
+			}*/
 			
-			trans = session.beginTransaction();		
-			session.save(location);
-			trans.commit();
+			success = true;
 			
 		} catch (HibernateException e) {
 			trans.rollback();

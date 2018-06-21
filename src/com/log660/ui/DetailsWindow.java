@@ -155,9 +155,7 @@ public class DetailsWindow extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     //TODO access a la BD pour location, creer un toast dependant du resultat
-                    createPopupLocation(true);
-                    createPopupLocation(false);
-
+                    createPopupLocation(Controller.locationFilm(idFilm));
                 }
             });
 

@@ -9,7 +9,6 @@ public class LocationfilmId implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private int id;
 	private static final long serialVersionUID = 1L;
 	private int nofilm;
 	private int noutilisateur;
@@ -56,15 +55,6 @@ public class LocationfilmId implements java.io.Serializable {
 		result = 37 * result + this.getNofilm();
 		result = 37 * result + this.getNoutilisateur();
 		return result;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	@SuppressWarnings("unused")
-	private void setId(int id) {
-		this.id = id;
 	}
 
 }

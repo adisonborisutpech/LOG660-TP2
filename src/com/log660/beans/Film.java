@@ -22,7 +22,7 @@ public class Film implements java.io.Serializable {
 	private String langueoriginale;
 	private Short dureefilm;
 	private Clob resumescenario;
-	private Short quantite;
+	private Integer quantite;
 	private Set<Genre> genres = new HashSet<Genre>(0);
 	private Set<Personnel> personnels = new HashSet<Personnel>(0);
 	private Set<Locationfilm> locationfilms = new HashSet<Locationfilm>(0);
@@ -31,7 +31,7 @@ public class Film implements java.io.Serializable {
 	}
 
 	public Film(String titre, Integer anneesortie, String paysproduction, String langueoriginale,
-			Short dureefilm, Clob resumescenario, Short quantite, Set<Genre> genres, Set<Personnel> personnels, Set<Locationfilm> locationfilms) {
+			Short dureefilm, Clob resumescenario, Integer quantite, Set<Genre> genres, Set<Personnel> personnels, Set<Locationfilm> locationfilms) {
 		this.titre = titre;
 		this.anneesortie = anneesortie;
 		this.paysproduction = paysproduction;
@@ -101,11 +101,11 @@ public class Film implements java.io.Serializable {
 		this.resumescenario = resumescenario;
 	}
 
-	public Short getQuantite() {
+	public Integer getQuantite() {
 		return this.quantite;
 	}
 
-	public void setQuantite(Short quantite) {
+	public void setQuantite(Integer quantite) {
 		this.quantite = quantite;
 	}
 

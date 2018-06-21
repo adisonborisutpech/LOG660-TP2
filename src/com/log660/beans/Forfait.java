@@ -15,14 +15,14 @@ public class Forfait implements java.io.Serializable {
 	private int guid;
 	private String nomforfait;
 	private Short cout;
-	private Byte quantitelocationmax;
-	private Byte dureelocationmax;
+	private Integer quantitelocationmax;
+	private Integer dureelocationmax;
 	private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>(0);
 
 	public Forfait() {
 	}
 
-	public Forfait(String nomforfait, Short cout, Byte quantitelocationmax, Byte dureelocationmax,
+	public Forfait(String nomforfait, Short cout, Integer quantitelocationmax, Integer dureelocationmax,
 			Set<Utilisateur> utilisateurs) {
 		this.nomforfait = nomforfait;
 		this.cout = cout;
@@ -56,19 +56,19 @@ public class Forfait implements java.io.Serializable {
 		this.cout = cout;
 	}
 
-	public Byte getQuantitelocationmax() {
+	public Integer getQuantitelocationmax() {
 		return this.quantitelocationmax;
 	}
 
-	public void setQuantitelocationmax(Byte quantitelocationmax) {
+	public void setQuantitelocationmax(Integer quantitelocationmax) {
 		this.quantitelocationmax = quantitelocationmax;
 	}
 
-	public Byte getDureelocationmax() {
+	public Integer getDureelocationmax() {
 		return this.dureelocationmax;
 	}
 
-	public void setDureelocationmax(Byte dureelocationmax) {
+	public void setDureelocationmax(Integer dureelocationmax) {
 		this.dureelocationmax = dureelocationmax;
 	}
 

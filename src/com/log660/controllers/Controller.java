@@ -20,7 +20,7 @@ import com.log660.ui.Window;
 public class Controller {
 
     private static Window w;
-    private static String login;
+    private static String username;
 
     public static void main (String[] args) {
         w = new Window();
@@ -39,7 +39,7 @@ public class Controller {
 
         //si le login a marche
     	if (utilisateur.getMotdepasse().equals(password)) {
-    		login = loginName;
+    		username = loginName;
     		success = true;
     		System.out.println("Login successful...");
     	} else {
@@ -66,10 +66,10 @@ public class Controller {
 
     }
 
-    public static boolean locationFilm (int filmGUID, String loginName) {
+    public static boolean locationFilm (int filmGUID) {
         //appel a la BD pour verifier que le  forfait permet la location et qu<un film est disponible
     	
-    	Utilisateur user = UtilisateurDAO.getUtilisateurByEmail(loginName);
+    	Utilisateur user = UtilisateurDAO.getUtilisateurByEmail(username);
     	
     	boolean success = LocationDAO.createNewLocation(user.getGuid(), filmGUID);
     	
